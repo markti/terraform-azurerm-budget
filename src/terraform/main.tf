@@ -18,7 +18,7 @@ resource "azurerm_consumption_budget_subscription" "main" {
   time_grain = "Monthly"
 
   time_period {
-    start_date = time_static.budget_start_date.rfc3339
+    start_date = "12/01/2023"
   }
 
   notification {
