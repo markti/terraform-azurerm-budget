@@ -12,7 +12,7 @@ resource "time_static" "budget_start_date" {
 resource "azurerm_consumption_budget_subscription" "main" {
 
   name            = "budget-${var.application_name}-${var.environment_name}"
-  subscription_id = data.azurerm_subscription.current.subscription_id
+  subscription_id = data.azurerm_subscription.current.id
 
   amount     = 50
   time_grain = "Monthly"
