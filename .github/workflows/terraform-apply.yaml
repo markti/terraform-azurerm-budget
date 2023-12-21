@@ -35,8 +35,6 @@ jobs:
         ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
         ARM_CLIENT_ID: ${{ vars.TERRAFORM_ARM_CLIENT_ID }}
         ARM_CLIENT_SECRET: ${{ secrets.TERRAFORM_ARM_CLIENT_SECRET }}
-        TF_VAR_application_name: ${{ vars.APPLICATION_NAME }}
-        TF_VAR_environment_name: ${{ vars.ENVIRONMENT_NAME }}
       working-directory: ${{ vars.TERRAFORM_WORKING_DIRECTORY }}
       run: |
         terraform init \
@@ -45,4 +43,4 @@ jobs:
           -backend-config="container_name=${{ vars.BACKEND_STORAGE_CONTAINER_NAME }}" \
           -backend-config="key=${{ vars.APPLICATION_NAME }}-${{ vars.ENVIRONMENT_NAME }}"
           
-        terraform apply -auto-approve
+        terraform apply -var-file=./env/${{ vars.ENVIRONMENT_NAME }}.tfvars -auto-approve
